@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#eaeaea</color>
+    <color name="colorPrimaryDark">#111111</color>
+    <color name="colorAccent">#dc3a3a</color>
+    <color name="colorControlHighlight">#AAAAAA</color>
+
+    <color name="appBackground">#111111</color>
+    <color name="secondaryBackground">#EAEAEB</color>
+
+    <color name="mainText">#eaeaea</color>
+    <color name="secondaryText">#BABABA</color>
+    <color name="boxText">#181818</color>
+    <color name="hintText">#333333</color>
+
+    <color name="dialog">#151515</color>
+    <color name="dialogText">@color/mainText</color>
+    <color name="editBoxText">#181818</color>
+    <color name="placeholder">#181818</color>
+    <color name="position_indicator">#E6E6E6</color>
+</resources>

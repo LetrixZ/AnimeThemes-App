@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="separator_size" format="dimension" type="dimen">0.5dp</item>
+    <item name="transition_duration" format="float" type="integer">@android:integer/config_shortAnimTime</item>
+</resources>

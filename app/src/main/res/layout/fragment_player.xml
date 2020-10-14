@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appBackground">
+
+    <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
+        android:id="@+id/aspect_ratio_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:resize_mode="fixed_width">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:background="@android:color/black"
+            app:controller_layout_id="@layout/player_controller"
+            app:fastforward_increment="10000"
+            app:hide_on_touch="true"
+            app:resize_mode="fit"
+            app:rewind_increment="10000"
+            app:show_timeout="3000"
+            app:surface_type="surface_view" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:visibility="visible" />
+
+    </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/aspect_ratio_layout"
+        android:layout_alignParentBottom="true"
+        android:paddingHorizontal="12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/info_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view"
+                    android:layout_width="120dp"
+                    android:layout_height="169dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/anime_cover"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/placeholder"
+                        android:scaleType="centerCrop"
+                        tools:src="@drawable/hero_2018" />
+
+                </androidx.cardview.widget.CardView>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@id/card_view">
+
+                    <TextView
+                        android:id="@+id/theme_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:textColor="@color/mainText"
+                        android:textSize="18sp"
+                        tools:text="Chikatto Chika Chika♡" />
+
+                    <TextView
+                        android:id="@+id/anime_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/theme_title"
+                        android:layout_marginStart="0dp"
+                        android:ellipsize="end"
+                        android:maxLines="4"
+                        android:textColor="@color/mainText"
+                        android:textSize="16sp"
+                        tools:text="Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen " />
+
+                    <TextView
+                        android:id="@+id/theme_type_quality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/anime_title"
+                        android:layout_marginStart="4dp"
+                        android:textColor="@color/secondaryText"
+                        android:textSize="12sp"
+                        tools:text="Ending 2 | No Credits" />
+
+                    <TextView
+                        android:id="@+id/theme_views"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/theme_type_quality"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="4dp"
+                        android:textColor="@color/secondaryText"
+                        android:textSize="12sp"
+                        tools:text="200 views" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/info_card"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="8dp"
+                tools:itemCount="4"
+                tools:listitem="@layout/recycler_theme_large" />
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

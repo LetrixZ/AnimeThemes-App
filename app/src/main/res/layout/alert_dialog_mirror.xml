@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="0dp"
+        app:cardBackgroundColor="@color/dialog"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="@string/mirror_quality"
+                android:textColor="@color/dialogText"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/separator"
+                style="@style/divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/separator_size"
+                android:layout_marginTop="45dp" />
+
+            <TextView
+                android:id="@+id/mirror_1"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_below="@id/separator"
+                android:background="?selectableItemBackground"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
+                tools:text="No credits" />
+
+            <View
+                android:id="@+id/divider_1"
+                style="@style/divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/separator_size"
+                android:layout_below="@id/mirror_1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/mirror_2"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_below="@id/divider_1"
+                android:background="?selectableItemBackground"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone"
+                tools:text="Transition" />
+
+            <View
+                android:id="@+id/divider_2"
+                style="@style/divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/separator_size"
+                android:layout_below="@id/mirror_2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/mirror_3"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_below="@id/divider_2"
+                android:background="?selectableItemBackground"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone"
+                tools:text="Voice Over" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

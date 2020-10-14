@@ -1,0 +1,74 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>
+
+        <item name="android:textColor">@color/mainText</item>
+        <item name="android:fontFamily">sans-serif</item>
+
+        <item name="android:windowBackground">@color/appBackground</item>
+    </style>
+
+    <style name="HeaderStyle">
+        <item name="android:textColor">@color/mainText</item>
+        <item name="android:textSize">42sp</item>
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="ButtonStyle">
+        <item name="android:tint">@color/mainText</item>
+        <item name="android:layout_width">42dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_height">42dp</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:background">?selectableItemBackgroundBorderless</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="ButtonStyleSmall">
+        <item name="android:tint">@color/mainText</item>
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:background">?selectableItemBackgroundBorderless</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="ListHeader">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textColor">#FFF</item>
+    </style>
+
+    <style name="alert_dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="divider">
+        <item name="android:background">@color/mainText</item>
+    </style>
+
+    <style name="Played">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="NotPlayed">
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+
+</resources>

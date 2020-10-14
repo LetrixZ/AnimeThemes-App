@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainActivity">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.letrix.animethemes.fragments.HomeFragment"
+        android:label="HomeFragment">
+        <argument
+            android:name="HomeList"
+            app:argType="com.letrix.animethemes.models.requests.HomeList" />
+
+        <action
+            android:id="@+id/show_info"
+            app:destination="@id/infoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/go_search"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/go_play"
+            app:destination="@id/playerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/toPlaylist"
+            app:destination="@id/playlistFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/getYear"
+            app:destination="@id/yearFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/userList"
+            app:destination="@id/userListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.letrix.animethemes.fragments.InfoFragment"
+        android:label="InfoFragment">
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            android:defaultValue="anime"
+            app:argType="string" />
+        <action
+            android:id="@+id/goPlay"
+            app:destination="@id/playerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="http://animethemes-api.herokuapp.com/api/v1/anime/{id}" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.letrix.animethemes.fragments.SearchFragment"
+        android:label="SearchFragment">
+        <action
+            android:id="@+id/showInfo"
+            app:destination="@id/infoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/goPlay"
+            app:destination="@id/playerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="com.letrix.animethemes.fragments.PlayerFragment"
+        android:label="PlayerFragment">
+        <argument
+            android:name="playlist"
+            app:argType="com.letrix.animethemes.models.Playlist" />
+    </fragment>
+    <fragment
+        android:id="@+id/playlistFragment"
+        android:name="com.letrix.animethemes.fragments.PlaylistFragment"
+        android:label="PlaylistFragment">
+        <action
+            android:id="@+id/goPlay"
+            app:destination="@id/playerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.letrix.animethemes.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/yearFragment"
+        android:name="com.letrix.animethemes.fragments.YearFragment"
+        android:label="YearFragment">
+        <argument
+            android:name="year"
+            app:argType="integer" />
+        <action
+            android:id="@+id/showInfo"
+            app:destination="@id/infoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="com.letrix.animethemes.fragments.UserListFragment"
+        android:label="UserListFragment">
+        <action
+            android:id="@+id/showInfo"
+            app:destination="@id/infoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+</navigation>
