@@ -11,15 +11,15 @@ import com.letrix.animethemes.models.PlaylistItem
 
 object Download {
 
-    fun beginDownload(item: PlaylistItem, activity: Activity) {
+    fun beginDownload(item: PlaylistItem, activity: Activity, format: String, uri: Uri) {
         lateinit var request: DownloadManager.Request
         val fileName =
             "${item.title} ${Utils.parseQuality(
                 item.mirror.quality,
                 activity,
                 2
-            )} - ${item.name} (${item.type}).webm"
-        request = DownloadManager.Request(Uri.parse(item.mirror.mirror)).apply {
+            )} - ${item.name} (${item.type}).$format"
+        request = DownloadManager.Request(uri).apply {
             setTitle(fileName)
             setDescription("Downloading theme")
             setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)

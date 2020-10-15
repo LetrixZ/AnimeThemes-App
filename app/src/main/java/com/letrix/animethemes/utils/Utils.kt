@@ -10,14 +10,11 @@ import android.net.NetworkInfo
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.View
-import android.view.WindowInsets
-import android.view.WindowInsetsController
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.letrix.animethemes.R
-import hideSystemUI_R
-import showSystemUI_R
+import hideSystemUI
+import showSystemUI
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -144,12 +141,12 @@ object Utils {
 
     @Suppress("DEPRECATION")
     fun showSystemUI(activity: Activity) {
-        activity.showSystemUI_R()
+        activity.showSystemUI()
     }
 
     @Suppress("DEPRECATION")
     fun hideSystemUI(activity: Activity) {
-        activity.hideSystemUI_R();
+        activity.hideSystemUI();
     }
 
     fun showToast(context: Context, string: String) {

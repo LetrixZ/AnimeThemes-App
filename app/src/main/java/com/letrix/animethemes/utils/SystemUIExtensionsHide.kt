@@ -13,10 +13,10 @@ import android.view.WindowManager
  * user swipes a system bar to show it. It is recommended to set [WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER],
  * call [showBelowCutout] from [Activity.onCreate]
  * (see [Android Developers article about cutouts](https://developer.android.com/guide/topics/display-cutout#never_render_content_in_the_display_cutout_area)).
- * @see showSystemUI_R
+ * @see showSystemUI
  * @see addSystemUIVisibilityListener
  */
-fun Activity.hideSystemUI_R() {
+fun Activity.hideSystemUI() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         window.insetsController?.let {
             // Default behavior is that if navigation bar is hidden, the system will "steal" touches
@@ -56,10 +56,10 @@ fun Activity.hideSystemUI_R() {
 
 /**
  * Shows the system bars and returns back from fullscreen.
- * @see hideSystemUI_R
+ * @see hideSystemUI
  * @see addSystemUIVisibilityListener
  */
-fun Activity.showSystemUI_R() {
+fun Activity.showSystemUI() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         // show app content in fullscreen, i. e. behind the bars when they are shown (alternative to
         // deprecated View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION and View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)

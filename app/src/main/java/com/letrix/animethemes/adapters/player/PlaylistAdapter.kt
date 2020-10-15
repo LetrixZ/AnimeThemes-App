@@ -13,7 +13,7 @@ import com.letrix.animethemes.models.Playlist
 import com.letrix.animethemes.models.PlaylistItem
 import com.letrix.animethemes.utils.Utils
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.recycler_theme_large.view.*
+import kotlinx.android.synthetic.main.recycler_theme_large_info.view.*
 
 class PlaylistAdapter(private val playlist: Playlist, private val playerListener: PlayerListener) :
     RecyclerView.Adapter<PlaylistAdapter.ItemHolder>() {
@@ -24,7 +24,7 @@ class PlaylistAdapter(private val playlist: Playlist, private val playerListener
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         return ItemHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.recycler_theme_large, parent, false), selected, playerListener
+                .inflate(R.layout.recycler_theme_large_info, parent, false), selected, playerListener
         )
     }
 
@@ -57,9 +57,9 @@ class PlaylistAdapter(private val playlist: Playlist, private val playerListener
             itemView.theme_title.text = playlistItem.title
             itemView.setOnClickListener(this)
             itemView.theme_type_quality.text =
-                "${Utils.parseType(playlistItem.type!!)} ${
+                "${Utils.parseType(playlistItem.type)} ${
                     Utils.parseQuality(
-                        playlistItem.mirror?.quality!!,
+                        playlistItem.mirror.quality,
                         itemView.context,
                         1
                     )

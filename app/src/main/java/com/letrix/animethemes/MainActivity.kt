@@ -21,7 +21,6 @@ import com.letrix.animethemes.models.PlaylistItem
 import com.letrix.animethemes.utils.MyDebugTree
 import com.letrix.animethemes.utils.SavedData
 import com.letrix.animethemes.utils.Utils
-import hideSystemUI_R
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import timber.log.Timber.d

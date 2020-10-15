@@ -10,7 +10,9 @@ import com.letrix.animethemes.models.Anime
 import com.letrix.animethemes.models.PlaylistItem
 import com.letrix.animethemes.models.Theme
 import com.letrix.animethemes.utils.Utils
+import kotlinx.android.synthetic.main.recycler_theme_large_info.view.*
 import kotlinx.android.synthetic.main.recycler_theme_large_mini.view.*
+import kotlinx.android.synthetic.main.recycler_theme_large_mini.view.theme_title
 
 class ThemeAdapter(
     private val themeList: List<Theme>,
@@ -25,10 +27,13 @@ class ThemeAdapter(
     ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         fun bind(theme: Theme) {
             itemView.theme_title.text = theme.title
-            itemView.theme_type.text =
-                if (theme.notes.isNotEmpty()) "${Utils.parseType(theme.type)} | ${theme.notes}" else Utils.parseType(
-                    theme.type
-                )
+//            itemView.theme_type.text =
+//                if (theme.notes.isNotEmpty()) "${Utils.parseType(theme.type)} | ${theme.notes}" else Utils.parseType(
+//                    theme.type
+//                )
+            itemView.theme_type.text = Utils.parseType(theme.type)
+            if (theme.notes.isNotEmpty()) itemView.theme_type.append(" | ${theme.notes}")
+            if (theme.episodes.isNotEmpty()) itemView.theme_type.append("\nEpisodes ${theme.episodes}")
             itemView.theme_quality.text =
                 Utils.parseQuality(
                     theme.mirrors[theme.selected].quality,

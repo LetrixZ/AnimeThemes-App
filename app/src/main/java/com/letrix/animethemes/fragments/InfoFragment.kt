@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +16,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.transition.TransitionInflater
 import com.letrix.animethemes.MainActivity
 import com.letrix.animethemes.R
 import com.letrix.animethemes.adapters.info.anime.ThemeAdapter
@@ -28,6 +28,7 @@ import com.letrix.animethemes.utils.Download
 import com.letrix.animethemes.utils.Utils
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.BlurTransformation
+import kotlinx.android.synthetic.main.alert_dialog_download.view.*
 import kotlinx.android.synthetic.main.alert_dialog_mirror.view.*
 import kotlinx.android.synthetic.main.fragment_info.*
 import kotlinx.android.synthetic.main.layout_header.*
@@ -194,6 +195,56 @@ class InfoFragment : Fragment(), ThemeListener {
         }
     }
 
+    @SuppressLint("InflateParams")
+    private fun downloadSelector(theme: Theme, anime: Anime) {
+        val itemView = layoutInflater.inflate(R.layout.alert_dialog_download, null)
+
+        val builder =
+            AlertDialog.Builder(requireActivity(), R.style.alert_dialog)
+        val themeContext = builder.create()
+        themeContext.apply {
+            setCanceledOnTouchOutside(true)
+            window?.setWindowAnimations(R.style.alert_dialog)
+            window?.setBackgroundDrawableResource(android.R.color.transparent)
+            setView(itemView)
+            setContentView(itemView)
+        }.show()
+
+        itemView.video_option.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (activity?.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) Download.beginDownload(
+                    PlaylistItem(anime, theme),
+                    activity as MainActivity,
+                    "webm",
+                    Uri.parse(theme.mirrors[theme.selected].mirror)
+                ) else requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1000)
+            } else Download.beginDownload(
+                PlaylistItem(anime, theme),
+                activity as MainActivity,
+                "webm",
+                Uri.parse(theme.mirrors[theme.selected].mirror)
+            )
+            themeContext.dismiss()
+        }
+
+        itemView.audio_option.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (activity?.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) Download.beginDownload(
+                    PlaylistItem(anime, theme),
+                    activity as MainActivity,
+                    "mp3",
+                    Uri.parse(theme.mirrors[theme.selected].audio)
+                ) else requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1000)
+            } else Download.beginDownload(
+                PlaylistItem(anime, theme),
+                activity as MainActivity,
+                "mp3",
+                Uri.parse(theme.mirrors[theme.selected].audio)
+            )
+            themeContext.dismiss()
+        }
+    }
+
     private fun playTheme(position: Int, anime: Anime) {
         val playlist = Playlist(anime.title)
         anime.themes.forEach {
@@ -214,12 +265,15 @@ class InfoFragment : Fragment(), ThemeListener {
     }
 
     override fun onDownload(theme: Theme, anime: Anime, type: Int) =
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (activity?.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) Download.beginDownload(
-                PlaylistItem(anime, theme),
-                activity as MainActivity
-            ) else requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1000)
-        } else Download.beginDownload(PlaylistItem(anime, theme), activity as MainActivity)
+        downloadSelector(theme, anime)
+
+    //    override fun onDownload(theme: Theme, anime: Anime, type: Int) =
+//        if (Build.VERSION.SDK_INT >= 23) {
+//            if (activity?.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) Download.beginDownload(
+//                PlaylistItem(anime, theme),
+//                activity as MainActivity
+//            ) else requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1000)
+//        } else Download.beginDownload(PlaylistItem(anime, theme), activity as MainActivity)
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

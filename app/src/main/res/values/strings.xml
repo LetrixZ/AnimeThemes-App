@@ -51,4 +51,7 @@
     <string name="download_completed">Download completed</string>
     <string name="latest_artist">Latest artists added</string>
     <string name="current_season">%1$s (current season)</string>
+    <string name="download_type">Select format</string>
+    <string name="download_video">Video with audio</string>
+    <string name="download_audio">Audio only</string>
 </resources>

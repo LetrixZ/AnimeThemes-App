@@ -25,6 +25,8 @@ data class Theme(
     val notes: String,
     @SerializedName("artist")
     val artist: String,
+    @SerializedName("episodes")
+    val episodes: String,
     @SerializedName("mirrors")
     val mirrors: ArrayList<Mirror> = ArrayList()
 ) : Parcelable {
@@ -37,7 +39,8 @@ data class Theme(
         artist: String,
         views: Int,
         type: String,
-        notes: String
+        notes: String,
+        episodes: String
     ) : this(
         themeId,
         "",
@@ -47,6 +50,7 @@ data class Theme(
         type,
         views,
         notes,
+        episodes,
         artist,
     )
 
@@ -58,6 +62,7 @@ data class Theme(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readInt(),
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.createTypedArrayList(Mirror)!!
@@ -75,6 +80,7 @@ data class Theme(
         parcel.writeInt(views)
         parcel.writeString(notes)
         parcel.writeString(artist)
+        parcel.writeString(episodes)
         parcel.writeTypedList(mirrors)
     }
 

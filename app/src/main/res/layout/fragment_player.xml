@@ -132,7 +132,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="8dp"
                 tools:itemCount="4"
-                tools:listitem="@layout/recycler_theme_large" />
+                tools:listitem="@layout/recycler_theme_large_info" />
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 </RelativeLayout>
