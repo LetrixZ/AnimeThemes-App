@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import com.letrix.animethemes.kotlin.data.ApiRepository
 import com.letrix.animethemes.models.Anime
 import com.letrix.animethemes.models.Artist
 import com.letrix.animethemes.models.Theme

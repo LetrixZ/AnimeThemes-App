@@ -10,7 +10,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.letrix.animethemes.models.Playlist
 
 object BuildMediaSource {
-    private fun buildMediaSource(context: Context?, uri: Uri?): MediaSource {
+    private fun buildMediaSource(context: Context, uri: Uri): MediaSource {
         val dataSourceFactory: DataSource.Factory =
             DefaultDataSourceFactory(context, "exoplayer")
         return ProgressiveMediaSource.Factory(dataSourceFactory).setTag("theme")
@@ -18,15 +18,15 @@ object BuildMediaSource {
     }
 
     fun buildConcatenatingMediaSource(
-        context: Context?,
+        context: Context,
         playlist: Playlist
     ): ConcatenatingMediaSource {
         val concatenatingMediaSource = ConcatenatingMediaSource()
-        for (item in playlist.items!!) {
+        for (item in playlist.items) {
             concatenatingMediaSource.addMediaSource(
                 buildMediaSource(
                     context,
-                    Uri.parse(item.mirror?.mirror)
+                    Uri.parse(item.mirror.mirror)
                 )
             )
         }

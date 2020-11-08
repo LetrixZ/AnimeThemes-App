@@ -1,6 +1,5 @@
-package com.letrix.animethemes.kotlin.data
+package com.letrix.animethemes.data
 
-import com.letrix.animethemes.kotlin.data.ApiService.Companion.API
 import com.letrix.animethemes.models.Anime
 import com.letrix.animethemes.models.Artist
 import com.letrix.animethemes.models.Theme
@@ -9,7 +8,6 @@ import com.letrix.animethemes.models.requests.HomeList
 import com.letrix.animethemes.models.requests.SearchList
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.PATCH
 import retrofit2.http.Path
 
 interface ApiService {

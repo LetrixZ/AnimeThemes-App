@@ -2,4 +2,6 @@
 <resources>
     <item name="separator_size" format="dimension" type="dimen">0.5dp</item>
     <item name="transition_duration" format="float" type="integer">@android:integer/config_shortAnimTime</item>
+    <dimen name="rect_card_radius">4dp</dimen>
+    <dimen name="exo_button_size">36dp</dimen>
 </resources>

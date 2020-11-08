@@ -1,6 +1,7 @@
-package com.letrix.animethemes.kotlin.data
+package com.letrix.animethemes.data
 
 import android.content.Context
+import com.letrix.animethemes.data.ApiService
 import com.letrix.animethemes.data.RetrofitBuilder
 import com.letrix.animethemes.models.Anime
 import com.letrix.animethemes.models.Artist

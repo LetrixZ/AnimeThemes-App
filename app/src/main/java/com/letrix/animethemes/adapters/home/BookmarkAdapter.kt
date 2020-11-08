@@ -1,17 +1,17 @@
 package com.letrix.animethemes.adapters.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.letrix.animethemes.R
 import com.letrix.animethemes.interfaces.HomeListener
 import com.letrix.animethemes.models.BookmarkWrapper
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.recycler_anime_item_big.view.anime_cover
-import kotlinx.android.synthetic.main.recycler_anime_item_big.view.anime_title
-import kotlinx.android.synthetic.main.recycler_anime_item_mid.view.*
+import kotlinx.android.synthetic.main.rcl_anime_square.view.*
 
 class BookmarkAdapter(
     private val bookmarks: ArrayList<BookmarkWrapper>,
@@ -64,7 +64,7 @@ class BookmarkAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder = ItemHolder(
         LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_anime_item_circle_mid_nocenter, parent, false),
+            .inflate(PreferenceManager.getDefaultSharedPreferences(parent.context).getInt("layoutViewNC", R.layout.rcl_anime_rect), parent, false),
         homeListener,
         bookmarks
     )

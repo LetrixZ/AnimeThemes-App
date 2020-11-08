@@ -1,20 +1,26 @@
 package com.letrix.animethemes.adapters.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.preference.Preference
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
+import com.letrix.animethemes.MainActivity
 import com.letrix.animethemes.R
 import com.letrix.animethemes.interfaces.HomeListener
 import com.letrix.animethemes.models.Anime
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.recycler_anime_item_big.view.anime_cover
-import kotlinx.android.synthetic.main.recycler_anime_item_big.view.anime_title
-import kotlinx.android.synthetic.main.recycler_anime_item_mid.view.*
+import kotlinx.android.synthetic.main.rcl_anime_rect.view.*
 
 class AnimeAdapter(private val animeList: List<Anime>, private val homeListener: HomeListener) :
     RecyclerView.Adapter<AnimeAdapter.ItemHolder>() {
-    class ItemHolder(itemView: View, private val homeListener: HomeListener, private val animeList: List<Anime>) :
+    class ItemHolder(
+        itemView: View,
+        private val homeListener: HomeListener,
+        private val animeList: List<Anime>
+    ) :
         RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener {
         fun bind(anime: Anime) {
             itemView.anime_title.text = anime.title
@@ -36,7 +42,9 @@ class AnimeAdapter(private val animeList: List<Anime>, private val homeListener:
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder = ItemHolder(
         LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_anime_item_circle_mid, parent, false),
+            .inflate(
+                PreferenceManager.getDefaultSharedPreferences(parent.context).getInt("layoutView", R.layout.rcl_anime_rect_center), parent, false
+            ),
         homeListener,
         animeList
     )

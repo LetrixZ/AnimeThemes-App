@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.graphics.Typeface
-import android.os.Build
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.media.MediaDescriptionCompat
 import android.support.v4.media.session.MediaSessionCompat
@@ -22,10 +22,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.exoplayer2.C
-import com.google.android.exoplayer2.ExoPlaybackException
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.audio.AudioAttributes
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.ext.mediasession.TimelineQueueNavigator
@@ -37,10 +34,7 @@ import com.letrix.animethemes.MainActivity
 import com.letrix.animethemes.R
 import com.letrix.animethemes.adapters.player.PlaylistAdapter
 import com.letrix.animethemes.data.MainViewModel
-import com.letrix.animethemes.kotlin.interfaces.OnBackPressed
-import com.letrix.animethemes.kotlin.interfaces.OnUserLeaveHint
 import com.letrix.animethemes.kotlin.interfaces.PlayerListener
-import com.letrix.animethemes.kotlin.utils.BuildMediaSource
 import com.letrix.animethemes.kotlin.utils.DescriptionAdapter
 import com.letrix.animethemes.models.Playlist
 import com.letrix.animethemes.models.PlaylistItem
@@ -48,6 +42,7 @@ import com.letrix.animethemes.utils.Utils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_player.*
 import kotlinx.android.synthetic.main.player_controller.*
+import timber.log.Timber
 
 class PlayerFragment : Fragment(), PlayerListener {
 
@@ -140,7 +135,14 @@ class PlayerFragment : Fragment(), PlayerListener {
                 .build(), true
         )
         player_view.player = player
-        player.prepare(BuildMediaSource.buildConcatenatingMediaSource(requireActivity(), playlist))
+//        player.prepare(BuildMediaSource.buildConcatenatingMediaSource(activity as MainActivity, playlist))
+        val mediaItems: ArrayList<MediaItem> = ArrayList()
+        for (item in playlist.items) {
+            mediaItems.add(MediaItem.fromUri(Uri.parse(item.mirror.mirror)))
+        }
+        player.setMediaItems(mediaItems)
+        player.prepare()
+
         player.seekTo(playlist.last, C.TIME_UNSET)
         player.playWhenReady = true
         player_view.keepScreenOn = true

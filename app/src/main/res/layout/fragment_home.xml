@@ -20,7 +20,7 @@
             style="@style/ButtonStyle"
             android:layout_toStartOf="@id/playlist_button"
             android:src="@drawable/ic_settings"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <ImageView
             android:id="@+id/playlist_button"

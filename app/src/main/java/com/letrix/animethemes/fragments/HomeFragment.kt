@@ -50,6 +50,10 @@ class HomeFragment : Fragment(), HomeListener {
             initRecyclerView(homeList)
         }
 
+        settings_button.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.goSettings())
+        }
+
         search_button.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.goSearch())
         }

@@ -1,9 +1,6 @@
 package com.letrix.animethemes.data
 
 import android.content.Context
-import com.letrix.animethemes.kotlin.data.ApiService
-import com.letrix.animethemes.utils.Utils
-import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
