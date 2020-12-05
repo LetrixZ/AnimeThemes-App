@@ -11,7 +11,7 @@ data class Theme(
     val themeId: String,
     @SerializedName("name")
     val anime: String,
-    @SerializedName("mal_id")
+    @SerializedName("anime_id")
     val malId: Int = 0,
     @SerializedName("cover")
     val cover: String,

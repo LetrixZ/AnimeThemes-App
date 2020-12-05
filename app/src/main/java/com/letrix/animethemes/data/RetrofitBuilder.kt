@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 class RetrofitBuilder(private val context: Context) {
 
     private val BASE_URL: String = "https://animethemes-api.herokuapp.com/"
-//    private val BASE_URL: String = "http://192.168.1.40:5000/"
+//    private val BASE_URL: String = "http://192.168.1.40:8000/"
 
 
     private val okHttpClient: OkHttpClient = OkHttpClient.Builder()

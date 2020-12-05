@@ -19,7 +19,7 @@ class ParentAdapter(private val year: Year, private val homeListener: HomeListen
             itemView.list_label.text = season.season
             itemView.list_rv.apply {
                 layoutManager = GridLayoutManager(itemView.context, 3)
-                adapter = AnimeAdapter(season.animes, homeListener)
+                adapter = AnimeAdapter(season.anime, homeListener)
             }
         }
     }

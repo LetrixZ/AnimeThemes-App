@@ -1,27 +1,26 @@
 package com.letrix.animethemes
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DownloadManager
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
+import androidx.preference.PreferenceManager
 import com.letrix.animethemes.data.DataViewModel
 import com.letrix.animethemes.data.MainViewModel
-import com.letrix.animethemes.models.Anime
-import com.letrix.animethemes.models.Artist
-import com.letrix.animethemes.models.BookmarkWrapper
-import com.letrix.animethemes.models.PlaylistItem
+import com.letrix.animethemes.models.*
 import com.letrix.animethemes.utils.MyDebugTree
 import com.letrix.animethemes.utils.SavedData
 import com.letrix.animethemes.utils.Utils
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.alert_dialog_update.view.*
 import timber.log.Timber
 import timber.log.Timber.d
 import kotlin.properties.Delegates
@@ -60,8 +59,18 @@ class MainActivity : AppCompatActivity() {
 
         getData()
 
+        val sharedPref: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = sharedPref.edit()
+
         if (savedInstanceState == null) {
             loading_layout.visibility = View.VISIBLE
+            mainViewModel.getUpdates.observe(this) {
+                if (it.isSuccessful && sharedPref.getInt("lastUpdate", 0) < it.body()!!.id) {
+                    editor.putInt("lastUpdate", it.body()!!.id).apply()
+                    showUpdate(it.body()!!)
+                    d(sharedPref.getInt("lastUpdate", 0).toString())
+                }
+            }
             mainViewModel.homeList.observe(this) {
                 if (it.isSuccessful) {
                     it.body()!!.bookmarks = dataViewModel.userBookmarks
@@ -128,6 +137,42 @@ class MainActivity : AppCompatActivity() {
             )
         }
         if (dataViewModel.userBookmarks.isEmpty()) dataViewModel.parentAdapter?.notifyItemChanged(0)
+    }
+
+    @SuppressLint("InflateParams", "SetTextI18n")
+    private fun showUpdate(updateMessage: UpdateMessage) {
+        val itemView = layoutInflater.inflate(R.layout.alert_dialog_update, null)
+
+        val builder =
+            AlertDialog.Builder(this, R.style.alert_dialog)
+        val updateDialog = builder.create()
+        updateDialog.apply {
+            setCanceledOnTouchOutside(true)
+            window?.setWindowAnimations(R.style.alert_dialog)
+            window?.setBackgroundDrawableResource(android.R.color.transparent)
+            setView(itemView)
+            setContentView(itemView)
+        }.show()
+
+        itemView.update_title.text = updateMessage.title
+        itemView.update_message.text = updateMessage.message
+
+        itemView.update_button.text = "Update to ${updateMessage.version}"
+
+
+
+        itemView.update_button.setOnClickListener {
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://github.com/LetrixZ/animethemes-app/releases")
+            )
+            startActivity(browserIntent)
+            updateDialog.dismiss()
+        }
+
+        itemView.cancel_button.setOnClickListener {
+            updateDialog.dismiss()
+        }
     }
 
     private fun getData() {

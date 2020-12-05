@@ -26,9 +26,10 @@ class ThemeAdapter(
         @SuppressLint("SetTextI18n")
         fun bind(theme: Theme) {
             itemView.theme_title.text = theme.title
-            itemView.theme_type.text = "${Utils.parseType(theme.type)} | ${theme.views} " +
-                    if (theme.views == 1) itemView.context.getString(R.string.view)
-                    else itemView.context.getString(R.string.views)
+            itemView.theme_type.text = Utils.parseType(theme.type)
+//            itemView.theme_type.text = "${Utils.parseType(theme.type)} | ${theme.views} " +
+//                    if (theme.views == 1) itemView.context.getString(R.string.view)
+//                    else itemView.context.getString(R.string.views)
             itemView.anime_title.text = theme.anime
             Picasso.get().load(theme.cover).into(itemView.anime_cover)
             itemView.clickable_layout.setOnClickListener(this)

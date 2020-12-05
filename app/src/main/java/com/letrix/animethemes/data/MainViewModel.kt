@@ -22,6 +22,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         emit(homeList)
     }
 
+    val getUpdates = liveData(Dispatchers.IO) {
+        val updates = repository.getUpdates()
+        emit(updates)
+    }
+
     fun anime(malId: Int): LiveData<Response<Anime>> {
         return liveData(Dispatchers.IO) {
             val anime = repository.anime(malId)

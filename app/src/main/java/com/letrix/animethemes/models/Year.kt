@@ -34,7 +34,7 @@ data class Year(
 
     data class Season(
         val season: String,
-        val animes: List<Anime>
+        val anime: List<Anime>
     ) : Parcelable {
         constructor(parcel: Parcel) : this(
             parcel.readString()!!,
@@ -43,7 +43,7 @@ data class Year(
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
             parcel.writeString(season)
-            parcel.writeTypedList(animes)
+            parcel.writeTypedList(anime)
         }
 
         override fun describeContents(): Int {

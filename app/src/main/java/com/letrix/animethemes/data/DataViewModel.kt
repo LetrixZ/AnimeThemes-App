@@ -1,6 +1,5 @@
 package com.letrix.animethemes.data
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.letrix.animethemes.adapters.home.ParentAdapter
 import com.letrix.animethemes.models.*

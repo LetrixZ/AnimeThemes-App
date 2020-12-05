@@ -1,9 +1,6 @@
 package com.letrix.animethemes.data
 
-import com.letrix.animethemes.models.Anime
-import com.letrix.animethemes.models.Artist
-import com.letrix.animethemes.models.Theme
-import com.letrix.animethemes.models.Year
+import com.letrix.animethemes.models.*
 import com.letrix.animethemes.models.requests.HomeList
 import com.letrix.animethemes.models.requests.SearchList
 import retrofit2.Response
@@ -14,6 +11,9 @@ interface ApiService {
 
     @GET(API + "home")
     suspend fun homeList(): Response<HomeList>
+
+    @GET(API + "updates")
+    suspend fun getUpdates(): Response<UpdateMessage>
 
     @GET(API + "anime/{mal_id}")
     suspend fun anime(@Path("mal_id") malId: Int): Response<Anime>
@@ -37,7 +37,7 @@ interface ApiService {
     suspend fun anilist(@Path("user") user: String): Response<List<Anime>>
 
     companion object {
-        const val API = "api/app/"
+        const val API = "api/android/"
     }
 
 }

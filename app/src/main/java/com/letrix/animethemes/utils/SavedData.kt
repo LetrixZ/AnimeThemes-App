@@ -40,4 +40,20 @@ object SavedData {
         else ArrayList()
     }
 
+
+    fun saveLastUpdate(lastUpdate: Int, activity: Activity) {
+        val prefEditor = PreferenceManager.getDefaultSharedPreferences(activity).edit()
+        val jsonString = Gson().toJson(lastUpdate)
+        prefEditor.putString("s", jsonString).apply()
+    }
+
+    fun getLastUpdate(activity: Activity): ArrayList<BookmarkWrapper> {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(activity)
+        val jsonString = preferences.getString("bookmarks", null)
+        val jsonType = object : TypeToken<ArrayList<BookmarkWrapper>>() {}.type
+        return if (jsonString != null)
+            Gson().fromJson(jsonString, jsonType)
+        else ArrayList()
+    }
+
 }

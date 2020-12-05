@@ -5,7 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class Artist(
-    @SerializedName("mal_id")
+    @SerializedName("artist_id")
     val malId: Int,
     @SerializedName("name")
     val name: String,

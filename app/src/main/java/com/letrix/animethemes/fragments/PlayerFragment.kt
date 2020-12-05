@@ -42,7 +42,6 @@ import com.letrix.animethemes.utils.Utils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_player.*
 import kotlinx.android.synthetic.main.player_controller.*
-import timber.log.Timber
 
 class PlayerFragment : Fragment(), PlayerListener {
 
@@ -214,6 +213,7 @@ class PlayerFragment : Fragment(), PlayerListener {
         Picasso.get().load(item.cover).into(anime_cover)
         playlist.last = position
         playlistAdapter.updatePos(position)
+        theme_views.visibility = View.GONE
         theme_views.text = "${item.views} " +
                 if (item.views == 1) getString(R.string.view)
                 else getString(R.string.views)

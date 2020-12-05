@@ -55,5 +55,6 @@
     <string name="download_video">Video with audio</string>
     <string name="download_audio">Audio only</string>
     <string name="settings_layout_design_label">Switch item layout design</string>
-    <string name="settings_layout_design_desc">Choose whichever desing you want for the main items to be displayed.</string>
+    <string name="settings_layout_design_desc">Choose whichever design you want for the main items to be displayed.</string>
+    <string name="dismiss_update">Dismiss</string>
 </resources>
